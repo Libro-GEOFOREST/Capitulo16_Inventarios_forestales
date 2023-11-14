@@ -89,7 +89,7 @@ mapview(Inventario.sp,map.type = "Esri.WorldImagery")
 
 ## 2. EXTRACCIÓN DE LA INFORMACIÓN DEL INVENTARIO
 
-### 1. Destribución de la densidad de especies
+### 1. Distribución de la densidad de especies
 
 Ahora se va a analizar la distribución de las especies principales del monte. Pero primero, es necesario determinar cuáles son éstas.
 
@@ -546,3 +546,58 @@ mean(Ho.24$Ho_24,na.rm=TRUE)
 ## [1] 8.856005
 ```
 
+```r
+max(Ho.24$Ho_24,na.rm=TRUE)
+```
+
+```r annotate
+## [1] 14.27004
+```
+
+Y para tener una representación espacial de los resultados se une a la tabla *Especies.sp*.
+
+```r
+#Unir resultado con la tabla de Especies 
+Especies.sp<-merge(Especies.sp,Ho.24,by.x="Nº PARCELA",
+                   by.y="Parcela")
+```
+
+Se puede hacer una visualización de los resultados mediante una cartografía de alturas dominantes para la especie *P.halepensis*.
+
+```r
+#Sustitución de valores nulos por 0
+Especies.sp$Ho_24[is.na(Especies.sp$Ho_24)]<-0
+
+#Gráfico de alturas dominantes de P.halepensis según las parcelas
+plot(Especies.sp[,"Ho_24"], pch=16,axes=TRUE, 
+     main="Distribución de altura dominante (m) de P.halepensis")
+```
+
+![](./Auxiliares/Ho_P.halepensis.png)
+
+Como en el caso de la densidad, resulta útil estimar la distribución espacial de las variables para la toma de decisiones selvícolas. Por eso, se repite una predicción geoestadística similar a la anterior.
+
+```r
+#Función de predicción geoestadística
+modelo.dist.a.halepensis <- gstat(formula=Ho_24~1,
+                        locations=Especies.sp, nmax=5, set=list(idp = 0))
+
+nn.a.halepensis <- interpolate(r, modelo.dist.a.halepensis)
+
+#Enmascarar la superficie del monte
+nnmsk.a.halepensis <- mask(nn.a.halepensis, 
+              as_Spatial(st_geometry(Pinar.Yunquera)))
+
+#Mapa de distribución de alturas dominantes de P.halepensis
+plot(nnmsk.a.halepensis,main="Distribución de altura dominante (m) de P.halepensis")
+```
+
+![](./Auxiliares/Ho_P.halepensis2.png)
+
+### 3. Distribución del área basimétrica de las especies
+
+El área basimétrica o área basal es la suma, expresada normalmente en m^2/ha, de las secciones normales de todos los pies existentes en una hectárea en una masa determinada. Viene a ser una relación entre la superficie que ocupan los troncos de los árboles y la superficie de terreno en el que se hallan. Se trata de una variable muy utilizada en la gestión de la espesura de las masas forestales.
+
+Se calcula a partir de los diámetros normales con la siguiente formulación:
+
+$$G=sum
