@@ -235,6 +235,7 @@ library(raster)
 
 r<-raster(Especies.sp,res=20)
 nn.dens.pinsapo <- interpolate(r, modelo.pinsapo)
+```
 
 Para limitar los resultados a la zona de estudio, se realiza una máscara del raster resultante de la interpolación con la geometría del monte. Una requisito imprescindible a tener en cuenta es que, para poder realizar las operaciones, los sistemas de referencia del área de estudio y de la interpolación deben coincidir.
 
