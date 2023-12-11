@@ -602,7 +602,7 @@ El área basimétrica o área basal es la suma, expresada normalmente en $m^2/ha
 
 Se calcula a partir de los diámetros normales con la siguiente formulación:
 
-$$ G = sum_ (&#960·(Dn/2))^2 $$
+$$ G = \sum_ (&#960·(Dn/2))^2 $$
 
 Primero, se va a calcular la superficie ocupada por la sección de cada pie, para seguidamente sumar los valores por parcela y especie.
 
@@ -703,3 +703,5 @@ nnmsk.g.halepensis <- mask(nn.g.halepensis,
 #Mapa de distribución de alturas dominantes de P.halepensis
 plot(nnmsk.g.halepensis,main="Distribución de área basal de P.halepensis")
 ```
+
+![](./Auxiliares/G_P.halepensis2.png)
