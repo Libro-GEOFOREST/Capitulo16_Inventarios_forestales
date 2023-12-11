@@ -321,7 +321,7 @@ Pinar.Yunquera<-st_transform(Pinar.Yunquera,
 
 #Comprobación del sistema de referencia
 crs(Pinar.Yunquera)
-``
+```
 
 ```r annotate
 ## Coordinate Reference System:
