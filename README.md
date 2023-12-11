@@ -596,10 +596,108 @@ plot(nnmsk.a.halepensis,main="Distribución de altura dominante (m) de P.halepen
 
 ### 3. Distribución del área basimétrica de las especies
 
-El área basimétrica o área basal es la suma, expresada normalmente en $\m^2/ha$, de las secciones normales de todos los pies existentes en una hectárea en una masa determinada. Viene a ser una relación entre la superficie que ocupan los troncos de los árboles y la superficie de terreno en el que se hallan. Se trata de una variable muy utilizada en la gestión de la espesura de las masas forestales.
+El área basimétrica o área basal es la suma, expresada normalmente en $m^2/ha$, de las secciones normales de todos los pies existentes en una hectárea en una masa determinada. Viene a ser una relación entre la superficie que ocupan los troncos de los árboles y la superficie de terreno en el que se hallan. Se trata de una variable muy utilizada en la gestión de la espesura de las masas forestales.
 
 Se calcula a partir de los diámetros normales con la siguiente formulación:
 
-$$ G=sum_(&#960·(Dn/2))^2 $$
+$$ G = sum_ (&#960·(Dn/2))^2 $$
 
-$$G=sum
+Primero, se va a calcular la superficie ocupada por la sección de cada pie, para seguidamente sumar los valores por parcela y especie.
+
+```r
+#Calcular el área basimétrica (g) de cada pie
+Pies.mayores$g<-pi*(((Pies.mayores$DN/100)/2)^2)
+
+#Calcular el área basimétrica de cada especie en cada parcela
+Area.Basimetrica<-aggregate(Pies.mayores$g,
+                            by=list(Pies.mayores$'Nº PARCELA',
+                                    Pies.mayores$'CÓDIGO ESPECIE'), FUN=sum)
+
+#Cambiar nombres de los campos
+names(Area.Basimetrica)<-c("Parcela","Especie","G")
+```
+
+Hasta aquí, se trata de valores por parcela. Ahora se transforma a cuantía por hectárea de la masa mediante una sencilla regla de 3.
+
+```r
+#Área basimétrica por hectarea
+Area.Basimetrica$G<-Area.Basimetrica$G*10000/(pi*((13/2)^2))
+```
+
+Y se selecciona la especie con la que se va a trabajar, *P.halepensis*.
+
+```r
+#Área basimétrica por hectarea
+Area.Basimetrica.24<-Area.Basimetrica[which(Area.Basimetrica$Especie==24),]
+```
+
+Además, puede resultar interesante conocer el valor mínimo, medio o máximo en alguna de las especies.
+
+```r
+#Valor medio de área basimétrica de P.halepensis en el monte
+mean(Area.Basimetrica.24$G,na.rm=TRUE)
+```
+
+```r annotate
+## [1] 47.25404
+```
+
+```r
+#Valor máximo de área basimétrica de P.halepensis en el monte
+max(Area.Basimetrica.24$G,na.rm=TRUE)
+```
+
+```r annotate
+## [1] 178.3195
+```
+
+```r
+#Valor mínimo de área basimétrica de P.halepensis en el monte
+min(Area.Basimetrica.24$G,na.rm=TRUE)
+```
+
+```r annotate
+## [1] 0.05325444
+```
+
+Finalmente, se une al resto de resultados ya obtenidos del inventario y preparamos la tabla para identificar fácilmente a qué se refiere cada campo.
+
+```r
+#Cambiar nombre al campo G
+names(Area.Basimetrica.24)[3]<-"G.24"
+
+#Unir resultado con la tabla de Especies 
+Especies.sp<-merge(Especies.sp,Area.Basimetrica.24[,c(1,3)],
+                   by.x="Nº PARCELA",
+                   by.y="Parcela",all.x=TRUE)
+```
+
+Igual que en los casos anteriores, se puede hacer una visualización de los resultados mediante una cartografía de área basal para la especie *P.halepensis*.
+
+```r
+#Sustitución de valores nulos por 0
+Especies.sp$G.24[is.na(Especies.sp$G.24)]<-0
+
+#Gráfico de área basimétrica de P.halepensis según las parcelas
+plot(Especies.sp[,"G.24"], pch=16,axes=TRUE, 
+     main="Distribución de área basal de P.halepensis")
+```
+
+![](./Auxiliares/G_P.halepensis.png)
+
+Y también se repite una predicción geoestadística para estimar la distribución espacial de la variable para la toma de decisiones selvícolas.
+
+```r
+#Función de predicción geoestadística
+modelo.dist.g.halepensis <- gstat(formula=G.24~1,
+                                  locations=Especies.sp, nmax=5, set=list(idp = 0))
+
+nn.g.halepensis <- interpolate(r, modelo.dist.g.halepensis)
+
+#Enmascarar la superficie del monte
+nnmsk.g.halepensis <- mask(nn.g.halepensis, 
+                           as_Spatial(st_geometry(Pinar.Yunquera)))
+
+#Mapa de distribución de alturas dominantes de P.halepensis
+plot(nnmsk.g.halepensis,main="Distribución de área basal de P.halepensis")
+```
