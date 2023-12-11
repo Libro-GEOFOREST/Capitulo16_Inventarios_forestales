@@ -596,8 +596,10 @@ plot(nnmsk.a.halepensis,main="Distribución de altura dominante (m) de P.halepen
 
 ### 3. Distribución del área basimétrica de las especies
 
-El área basimétrica o área basal es la suma, expresada normalmente en m^2/ha, de las secciones normales de todos los pies existentes en una hectárea en una masa determinada. Viene a ser una relación entre la superficie que ocupan los troncos de los árboles y la superficie de terreno en el que se hallan. Se trata de una variable muy utilizada en la gestión de la espesura de las masas forestales.
+El área basimétrica o área basal es la suma, expresada normalmente en $\m^2/ha$, de las secciones normales de todos los pies existentes en una hectárea en una masa determinada. Viene a ser una relación entre la superficie que ocupan los troncos de los árboles y la superficie de terreno en el que se hallan. Se trata de una variable muy utilizada en la gestión de la espesura de las masas forestales.
 
 Se calcula a partir de los diámetros normales con la siguiente formulación:
+
+$$ G=sum_(&#960·(Dn/2))^2 $$
 
 $$G=sum
