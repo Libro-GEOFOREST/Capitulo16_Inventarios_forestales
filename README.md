@@ -19,11 +19,12 @@ Primero es necesario establecer un nuevo directorio de trabajo que va a involucr
 setwd("C:/DESCARGA/")
 ```
 
-Seguidamente, se cargan los límites del monte guardados previamente.
+Seguidamente, se cargan los límites del monte.
 
 ```r
-#Establecer el directorio de trabajo
-load("Monte.RData")
+#Cargar librería para leer archivos shapefile
+library(sf)
+Pinar.Yunquera<-st_read("C:/DESCARGA/Pinar.Yunquera.shp") #Adaptar a la ruta en la que se haya guardado en el equipo
 ```
 
 ### Análisis del inventario
