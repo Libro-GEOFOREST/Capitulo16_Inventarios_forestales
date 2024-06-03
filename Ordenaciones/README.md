@@ -90,7 +90,7 @@ mapview(Inventario.sp,map.type = "Esri.WorldImagery")
 ```
 
 ![](./Auxiliares/Inventario.PNG)
-![](Auxiliares/Inventario.PNG)
+![](Capitulo16_Inventarios_forestales/Auxiliares/Inventario.PNG)
 
 ## 2. EXTRACCIÓN DE LA INFORMACIÓN DEL INVENTARIO
 
