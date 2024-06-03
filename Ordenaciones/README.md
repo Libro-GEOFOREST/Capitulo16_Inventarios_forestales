@@ -3,7 +3,7 @@
 
 Mª Ángeles Varo Martínez y Rafael Mª Cerrillo Navarro
 
-# Capítulo: Análisis de datos de inventarios forestales
+# Capítulo 16: Análisis de datos de inventarios forestales
 
 ## 1. INFORMACIÓN FORESTAL RELATIVA A LAS ORDENACIONES
 
