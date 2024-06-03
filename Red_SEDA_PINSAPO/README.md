@@ -3,7 +3,7 @@
 
 Mª Ángeles Varo Martínez y Rafael Mª Cerrillo Navarro
 
-# Capítulo: Análisis de datos de inventarios forestales
+# Capítulo 16: Análisis de datos de inventarios forestales
 
 ## 1. ESTADO SANITARIO DEL MONTE
 
@@ -13,11 +13,11 @@ Antes de comenzar a recopilar datos de distintas fuentes y orígenes, es necesar
 
 El Reglamento CEE 3528/86 sobre protección de bosques contra los efectos de la contaminación atmosférica, puso en marcha una serie de acciones para el seguimiento del estado de los ecosistemas forestales en todos los países comunitarios, entre ellos, el establecimiento de la Red Europea de Seguimiento de Daños en los Bosques con muestreos sistemáticos anuales de la evolución del estado de salud de los bosques en parcelas sobre una malla de 16x16km.
 
-![](./Auxiliares/ICP.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/ICP.png)
 
 Posteriormente, la Junta de Andalucía lanzó en el año 2000 una Red Autonómica de Equilibrios Biológicos, sobre la base de la malla kilométrica existente, pero densificada de 8 x 8 km (Red SEDA). Para el caso concreto de la especie de pinsapo el muestreo se intensificó en una malla de 1 x 1 km en ecosistemas con presencia de Abies pinsapo (Red PINSAPO).
 
-![](./Auxiliares/Red_SEDA.jpg)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Red_SEDA.jpg)
 
 Los datos más actualizados de la Red PINSAPO están a disposición del usuario en la web de descargas de la REDIAM: 
 
@@ -25,7 +25,7 @@ Los datos más actualizados de la Red PINSAPO están a disposición del usuario 
 
 Se trata de una base de datos relacional en formato mdb, aunque para su distribución, las tablas originales han sido exportadas a formato csv. Sin embargo, para su correcto uso es necesario entender la arquitectura con la que fue diseñada.
 
-![](./Auxiliares/BBDD.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/BBDD.png)
 
 Una vez descargada, se cargan los datos en R.
 
@@ -165,7 +165,7 @@ library(mapview)
 mapview(Admon.pto.sp,zcol="PUNTO")+(Pinar.Yunquera)
 ```
 
-![](./Auxiliares/mapa.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/mapa.png)
 
 Se cuentan 12 puntos dentro de los límites del monte. Ha debido de haber algún fallo en la introducción de los datos, por lo que la selección de los mismos debe ser mediante una función geográfica. Se utilizá *st_within* que genera una operación espacial en la que comprueba la inclusión de una geometría en otra y devuelve *TRUE* o *FALSE*.
 
@@ -192,7 +192,7 @@ levels(as.factor(Ptos.sp.monte$COD_MN))
 mapview(Ptos.sp.monte,zcol="COD_MNT")+(Pinar.Yunquera)
 ```
 
-![](./Auxiliares/mapa2.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/mapa2.png)
 
 Se comprueba que se trata de un error humano y se puede corregir.
 
@@ -398,7 +398,7 @@ table(Evalua.arbol.r.2$DEFO[which(Evalua.arbol.r.2$CAMP==2001)],
 
 A veces se utiliza una simplificación de la realidad en la que se agrupan los valores de una variable en clases que sean significativas para el analista. Por ejemplo, es una práctica bastante común en el seguimiento de la sanidad forestal simplificar la defoliación a clases usando las tablas de Ferreti, 1994:
 
-![](./Auxiliares/Ferreti.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Ferreti.png)
 
 Siguiendo esta tabla se agregan los datos.
 
@@ -515,7 +515,7 @@ boxplot(Evalua.arbol.r.2$DEFO[which(Evalua.arbol.r.2$PUNTO=="SN0230")]~Evalua.ar
 par(opar)
 ```
 
-![](./Auxiliares/Puntos.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Puntos.png)
 
 Con este gráfico se consigue interpretar que hay parcelas (*SN201*, *SN206*, *SN211*, *SN2022*) que presentan valores de defoliación concentrados y bajos, frente a otro grupo de puntos donde se da mayor dispersión en la defoliación de la parcela, con numerosos valores atípicos fuera de los cuartiles de referencia (*SN203*, *SN204*, *SN205*, *SN210*, *SN213*, *SN221* y *SN230*). Asimismo se puede deducir que en algunas de las ubicaciones del monte (*SN213*, *SN221* y *SN230*), hubo un aumento significativo de la defoliación en el año 2006.
 
@@ -710,7 +710,7 @@ points(defo$CAMP[which(defo$DEFO=="Muertos"&defo$PUNTO=="SN0230")],
 par(opar)
 ```
 
-![](./Auxiliares/Puntos2.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Puntos2.png)
 
 Ahora resulta más evidente que hay ubicaciones en el monte donde apenas existe defoliaciones altas en el arbolado y otras donde existe mortandad de los pies y defoliaciones severas. También se observa que en la campaña 2006 en algunas parcelas hubo un aumento significativo de los árboles muertos y con defoliación severa a costa de un descenso en los que presentan defoliación ligera. Sin embargo, ahora resulta más reconocible un patrón de compensación entre las clases de defoliación ligera y defoliación moderada dependiendo de la campaña. Podría continuar estudiándose la influencia climatológica de dichos eventos.
 
@@ -811,7 +811,7 @@ mtext(2001,outer=TRUE)
 par(opar)
 ```
 
-![](./Auxiliares/Puntos3.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Puntos3.png)
 
 Al juntar todos la sucesión de anualidades se puede analizar lo que ha ocurrido en el monte.
 
