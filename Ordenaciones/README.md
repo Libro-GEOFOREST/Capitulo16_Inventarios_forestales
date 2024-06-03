@@ -89,7 +89,6 @@ library(mapview)
 mapview(Inventario.sp,map.type = "Esri.WorldImagery")
 ```
 
-![](./Auxiliares/Inventario.PNG)
 ![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Inventario.PNG)
 
 ## 2. EXTRACCIÓN DE LA INFORMACIÓN DEL INVENTARIO
@@ -216,14 +215,14 @@ plot(Especies.sp[,c("P.halepensis","A.pinsapo","J.communis","J.phoenica")], pch=
      axes=TRUE)
 ```
 
-![](./Auxiliares/Spp.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Spp.png)
 
 ```r
 #Cartografía de densidad de Pinsapo
 mapview(Especies.sp,zcol="A.pinsapo", map.type = "Esri.WorldImagery")
 ```
 
-![](./Auxiliares/Densidad_pinsapo.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Densidad_pinsapo.png)
 
 A continuación, a partir de los datos de las parcelas, se va a realizar una predicción geoestadística a través de la función gstat de la librería con el mismo nombre. La función que crea objetos que contienen toda la información necesaria para la predicción univariante o multivariante (kriging simple, ordinario o universal), o sus equivalentes de simulación gaussiana o indicadora condicional o incondicional. Se va a hacer una interpolación por los vecinos más próximos, considerando los 5 más cercanos *nmax=5*. Finalmente se generan una capa raster con los valores interpolados usando el modelo calculado que ya tiene las localizaciones X e Y como variables independientes.
 
@@ -382,7 +381,7 @@ nn.dens.pinsapo.msk <- mask(nn.dens.pinsapo,
 plot(nn.dens.pinsapo.msk)
 ```
 
-![](./Auxiliares/Densidad_pinsapo2.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Densidad_pinsapo2.png)
 
 ### 2. Destribución de la altura dominante de especies
 
@@ -404,7 +403,7 @@ plot(Arboles.tipo$DN[which(Arboles.tipo$'CÓDIGO ESPECIE'==24)],
      xlab="DAP (cm)",ylab="Altura (m)",main="P. halepensis")
 ```
 
-![](./Auxiliares/DAP_H_Phalepensis.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/DAP_H_Phalepensis.png)
 
 A pesar de la dispersión de los datos, se podría pensar que la distribución de los datos siguen una curva logarítmica del tipo:
 
@@ -486,7 +485,7 @@ legend("bottomright",
        bty="n")
 ```
 
-![](./Auxiliares/DAP_H_Phalepensis2.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/DAP_H_Phalepensis2.png)
 
 Finalmente, con la ecuación del ajuste, se realiza la predicción de las alturas en todos los pies del inventario.
 
@@ -579,7 +578,7 @@ plot(Especies.sp[,"Ho_24"], pch=16,axes=TRUE,
      main="Distribución de altura dominante (m) de P.halepensis")
 ```
 
-![](./Auxiliares/Ho_P.halepensis.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Ho_P.halepensis.png)
 
 Como en el caso de la densidad, resulta útil estimar la distribución espacial de las variables para la toma de decisiones selvícolas. Por eso, se repite una predicción geoestadística similar a la anterior.
 
@@ -598,7 +597,7 @@ nnmsk.a.halepensis <- mask(nn.a.halepensis,
 plot(nnmsk.a.halepensis,main="Distribución de altura dominante (m) de P.halepensis")
 ```
 
-![](./Auxiliares/Ho_P.halepensis2.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Ho_P.halepensis2.png)
 
 ### 3. Distribución del área basimétrica de las especies
 
@@ -689,7 +688,7 @@ plot(Especies.sp[,"G.24"], pch=16,axes=TRUE,
      main="Distribución de área basal de P.halepensis")
 ```
 
-![](./Auxiliares/G_P.halepensis.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/G_P.halepensis.png)
 
 Y también se repite una predicción geoestadística para estimar la distribución espacial de la variable para la toma de decisiones selvícolas.
 
@@ -708,5 +707,5 @@ nnmsk.g.halepensis <- mask(nn.g.halepensis,
 plot(nnmsk.g.halepensis,main="Distribución de área basal de P.halepensis")
 ```
 
-![](./Auxiliares/G_P.halepensis2.png)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/G_P.halepensis2.png)
 
