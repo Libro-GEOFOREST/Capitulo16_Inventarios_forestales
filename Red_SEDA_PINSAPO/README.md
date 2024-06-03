@@ -815,6 +815,6 @@ par(opar)
 
 Al juntar todos la sucesión de anualidades se puede analizar lo que ha ocurrido en el monte.
 
-![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Sin título.gif)
+![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/blob/main/Auxiliares/Sin%20t%C3%ADtulo.gif)
 
 Se puede concluir que el número de pies con defoliación ligera son los más estables en el tiempo, siendo más numerosos en la zona sur-este del monte. En contraste, las muertes de los pies parecen ocurrir con mayor frecuencia y número en la misma zona. Los árboles con defoliación severa también parecen ajustarse a dicho patrón espacial en todas las campañas.
