@@ -89,7 +89,7 @@ library(mapview)
 mapview(Inventario.sp,map.type = "Esri.WorldImagery")
 ```
 
-![](https://github.com/Libro-GEOFOREST/Capitulo16_Inventarios_forestales/Auxiliares/Inventario.png)
+![](./Auxiliares/Inventario.PNG)
 
 ## 2. EXTRACCIÓN DE LA INFORMACIÓN DEL INVENTARIO
 
